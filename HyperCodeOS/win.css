@@ -1,0 +1,679 @@
+@import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #1a1a1a; /* Darker background */
+    height: 100vh;
+    user-select: none;
+}
+
+.desktop {
+    background-image: url('https://4kwallpapers.com/images/wallpapers/windows-11-dark-mode-stock-official-3840x2400-5630.jpg');
+    background-size: cover;
+    background-position: center;
+    height: calc(100vh - 40px);
+    position: relative;
+    overflow: hidden;
+}
+
+.taskbar {
+    height: 40px;
+    background-color: rgba(32, 32, 32, 0.8);
+    backdrop-filter: blur(20px);
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    position: relative;
+    z-index: 1000;
+}
+
+.start-button {
+    color: white;
+    font-size: 16px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.start-button:hover {
+    transform: scale(1.1);
+}
+
+.taskbar-icons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.taskbar-icon {
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.taskbar-icon:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.search-box {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    padding: 6px 12px;
+    color: white;
+    font-size: 14px;
+    margin-left: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    max-width: 400px;
+}
+
+.search-box:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.taskbar-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.time-date {
+    color: white;
+    font-size: 12px;
+    text-align: right;
+    padding: 0 8px;
+}
+
+.desktop-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80px;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    position: absolute;
+    color: white;
+    text-align: center;
+    font-size: 12px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.desktop-icon:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.desktop-icon i {
+    font-size: 32px;
+    margin-bottom: 4px;
+}
+
+.window {
+    position: absolute;
+    background-color: #2c2c2c; /* Dark window background */
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    display: none;
+    flex-direction: column;
+    z-index: 100;
+    min-width: 300px;
+    min-height: 200px;
+    color: #e0e0e0; /* Light text for dark background */
+}
+
+.window.active {
+    display: flex;
+}
+
+.window-header {
+    background-color: #1f1f1f; /* Slightly darker header */
+    color: white;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: move;
+}
+
+.window-title {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.window-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.window-control {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.window-control.close {
+    background-color: #ff5f56;
+}
+
+.window-control.minimize {
+    background-color: #ffbd2e;
+}
+
+.window-control.maximize {
+    background-color: #27c93f;
+}
+
+.window-content {
+    flex: 1;
+    padding: 12px;
+    overflow: auto;
+    color: #e0e0e0; /* Ensure content text is light */
+}
+
+.start-menu {
+    position: absolute;
+    bottom: 50px;
+    left: 10px;
+    width: 500px;
+    height: 600px;
+    background-color: rgba(28, 28, 28, 0.95); /* Slightly adjusted dark start menu */
+    backdrop-filter: blur(20px);
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    display: none;
+    flex-direction: column;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.start-menu.active {
+    display: flex;
+    animation: slideUp 0.3s ease-out;
+    /* Apply the slide-up animation */
+}
+
+/* Renamed and adjusted for a slide-up effect */
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        /* Start slightly lower */
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.start-menu-header {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.start-menu-search {
+    flex: 1;
+    background-color: rgba(60, 60, 60, 0.8); /* Darker search input */
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    color: white;
+    font-size: 14px;
+}
+
+.start-menu-content {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    padding: 0 20px 20px;
+    flex: 1;
+    overflow-y: 0;
+    max-height: 1%;
+}
+
+.start-menu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Keep horizontal centering */
+    justify-content: center;
+    /* Add vertical centering */
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    padding: 5px 5px;
+    /* Adjust padding: more vertical, less horizontal */
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.start-menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.15); /* Slightly brighter hover */
+}
+
+.start-menu-item i {
+    font-size: 26px;
+    /* ปรับขนาดไอคอนลงนิดหน่อย */
+    margin-bottom: 8px;
+    /* ลดระยะห่างใต้ไอคอนลงนิดหน่อย */
+}
+
+.start-menu-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Keep vertical alignment */
+    padding: 10px 16px;
+    background: rgba(0, 0, 0, 0.2); /* Darker footer background */
+    border-top: 1px solid rgba(255, 255, 255, 0.08); /* Subtler border */
+    color: white;
+    font-size: 14px;
+    height: 40px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.start-menu-footer span {
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.start-menu-footer span:hover {
+    opacity: 0.7;
+}
+
+.power-button {
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.power-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.file-explorer-content {
+    display: flex;
+    height: 100%;
+}
+
+.file-explorer-sidebar {
+    width: 200px;
+    background-color: #252525; /* Dark sidebar */
+    border-right: 1px solid #3a3a3a; /* Darker border */
+    color: #d0d0d0; /* Light text for sidebar */
+    padding: 10px 0;
+}
+
+.file-explorer-main {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.sidebar-item {
+    padding: 8px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.sidebar-item:hover {
+    background-color: #3a3a3a; /* Dark hover for sidebar items */
+}
+
+.file-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100px;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    float: left;
+}
+
+.file-item:hover {
+    background-color: #3a3a3a; /* Dark hover for file items */
+}
+
+.file-item i {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.file-item-name {
+    font-size: 12px;
+    text-align: center;
+    word-break: break-word;
+    width: 100%;
+}
+
+.notepad-content {
+    width: 100%;
+    height: 100%;
+    background-color: #2c2c2c; /* Match window background */
+    color: #e0e0e0; /* Light text */
+    border: none;
+    resize: none;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+.edge-content {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.settings-content {
+    display: flex;
+    height: 100%;
+}
+
+.settings-sidebar {
+    width: 200px;
+    background-color: #252525; /* Dark sidebar */
+    border-right: 1px solid #3a3a3a; /* Darker border */
+    color: #d0d0d0; /* Light text for sidebar */
+    padding: 10px 0;
+}
+
+.settings-main {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.settings-category {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.settings-option {
+    margin-bottom: 15px;
+}
+
+.settings-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.settings-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #555; /* Darker border for inputs */
+    border-radius: 4px;
+    background-color: #3a3a3a; /* Dark input background */
+    color: #e0e0e0; /* Light text in inputs */
+}
+
+.settings-toggle {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.settings-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.settings-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #555; /* Darker toggle background (off state) */
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.settings-slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #ccc; /* Lighter handle for dark background */
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.settings-slider {
+    background-color: #0078d7;
+}
+
+input:checked+.settings-slider:before {
+    transform: translateX(26px);
+}
+
+.calculator {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    padding: 10px;
+}
+
+.calculator-display {
+    grid-column: span 4;
+    background-color: #3a3a3a; /* Dark display background */
+    padding: 10px;
+    text-align: right;
+    font-size: 24px;
+    border: 1px solid #555; /* Darker border */
+    color: #e0e0e0; /* Light text */
+    border-radius: 4px;
+    margin-bottom: 10px;
+    height: 40px;
+    overflow: hidden;
+}
+
+.calculator-button {
+    padding: 15px;
+    font-size: 18px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #4a4a4a; /* Darker buttons */
+    color: #e0e0e0; /* Light text on buttons */
+}
+
+.calculator-button:hover {
+    background-color: #5a5a5a; /* Slightly lighter dark hover */
+}
+
+.calculator-button.operator {
+    background-color: #0078d7;
+    color: white;
+}
+
+.calculator-button.operator:hover {
+    background-color: #006bbd; /* Adjusted dark hover for operator */
+}
+
+.calculator-button.equals {
+    background-color: #28a745;
+    color: white;
+}
+
+.calculator-button.equals:hover {
+    background-color: #34c759; /* Adjusted dark hover for equals */
+}
+
+.calculator-button.clear {
+    background-color: #dc3545;
+    color: white;
+}
+
+.calculator-button.clear:hover {
+    background-color: #ff453a; /* Adjusted dark hover for clear */
+}
+
+.notification {
+    position: fixed;
+    bottom: 50px;
+    right: 10px;
+    background-color: rgba(28, 28, 28, 0.95); /* Match start menu dark */
+    backdrop-filter: blur(20px);
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    display: none;
+    z-index: 1000;
+}
+
+.notification.active {
+    display: block;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.notification-title {
+    font-weight: 600;
+}
+
+.notification-close {
+    cursor: pointer;
+}
+
+.notification-message {
+    font-size: 14px;
+}
+
+.context-menu {
+    position: absolute;
+    background-color: #2c2c2c; /* Dark context menu */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    padding: 5px 0;
+    z-index: 2000;
+    display: none;
+    min-width: 200px;
+}
+
+.context-menu.active {
+    display: block;
+}
+
+.context-menu-item {
+    padding: 8px 20px;
+    color: #e0e0e0; /* Light text */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.context-menu-item:hover {
+    background-color: #3a3a3a; /* Dark hover */
+}
+
+.context-menu-separator {
+    height: 1px;
+    background-color: #4a4a4a; /* Darker separator */
+    margin: 5px 0;
+}
+
+/* Added styles for window resizing */
+.window-resize-handle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: transparent;
+    z-index: 1;
+}
+
+.window-resize-handle.bottom-right {
+    right: 0;
+    bottom: 0;
+    cursor: se-resize;
+}
+
+.window-resize-handle.bottom {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 5px;
+    cursor: s-resize;
+}
+
+.window-resize-handle.right {
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 5px;
+    cursor: e-resize;
+}
+
+/* Added styles for taskbar app indicators */
+.taskbar-app-indicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #0078d7;
+    display: none;
+}
+
+.taskbar-icon.active {
+    position: relative;
+}
+
+.taskbar-icon.active .taskbar-app-indicator {
+    display: block;
+}
