@@ -28,7 +28,6 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "simplex": "^0.2.0",
-    "simplex-noise": "^4.0.3",
     "tailwindcss": "3.3.2",
     "three": "^0.176.0",
     "typescript": "5.0.4"
