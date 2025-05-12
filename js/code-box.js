@@ -1,10 +1,10 @@
 (() => {
     // Configuration constants
     // load from assets/images
-    const COPY_ICON = '<img src="./assets/images/COPY_ICON.png" alt="Copy" width="16" height="16" onerror="this.onerror=null; this.outerHTML=\'&#x2398;\';" />';
-    const SUCCESS_ICON = '<img src="./assets/images/SUCCESS_ICON.png" alt="Success" width="16" height="16" onerror="this.onerror=null; this.outerHTML=\'&#x2713;\';" />';
-    const ERROR_ICON = '<img src="./assets/images/ERROR_ICON.png" alt="Error" width="16" height="16" onerror="this.onerror=null; this.outerHTML=\'&#x2717;\';" />';
-
+    const COPY_ICON = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clip-rule="evenodd" /></svg>';;
+    const SUCCESS_ICON = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clip-rule="evenodd" /></svg>';
+    const ERROR_ICON = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06l3 3a.75.75 0 001.06 0l3-3a.75.75 0 00-1.06-1.06L12 11.44l-1.72-2.22z" clip-rule="evenodd" /></svg>';
+    
     const RESET_DELAY = 2000;
 
     // Main initialization
