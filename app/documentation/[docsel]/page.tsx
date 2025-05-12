@@ -77,15 +77,14 @@ export default function Home() {
       {/* Resource links */}
       <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-2 lg:text-left">
         <ResourceCard
-          title="moding"
+          title="Lua ( Required )"
           description="Find in-depth information about Next.js features and API."
-          href="documentation/moding"
+          href="documentation/Lua"
         />
-        
         <ResourceCard
-          title="custom stages api"
+          title="HScript ( Required but fest code no lag )"
           description="Find in-depth information about Next.js features and API."
-          href="documentation/customstages"
+          href="documentation/HScript"
         />
       </div>
     </main>

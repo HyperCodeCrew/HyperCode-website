@@ -75,17 +75,21 @@ export default function Home() {
       <CenterLogo />
 
       {/* Resource links */}
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-2 lg:text-left">
+      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-8 lg:text-left">
         <ResourceCard
-          title="moding"
-          description="Find in-depth information about Next.js features and API."
-          href="documentation/moding"
+          title="Download HyperCode Engine"
+          description=""
+          href="https://github.com/HyperCodeCrew/FNF-HyperCode-Engine"
         />
-        
         <ResourceCard
-          title="custom stages api"
+          title="Documentation"
           description="Find in-depth information about Next.js features and API."
-          href="documentation/customstages"
+          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+        />
+        <ResourceCard
+          title="Donate"
+          description="Donate to the project"
+          href="https://easydonate.app/paopun2060"
         />
       </div>
     </main>
